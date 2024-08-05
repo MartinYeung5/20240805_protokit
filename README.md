@@ -97,6 +97,8 @@ location:
 * in packages/chain/package.json
     "dev:run": "node --loader ts-node/esm --experimental-vm-modules --experimental-wasm-modules --experimental-wasm-threads --es-module-specifier-resolution=node ./src/start.ts start \"./environments/$PROTOKIT_ENV_FOLDER/chain.config.ts\" $1",
 
+why ?
+
 ### Running tests
 ```zsh
 # run and watch tests for the `chain` package
