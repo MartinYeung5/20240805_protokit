@@ -87,7 +87,7 @@ pnpm dev --filter chain
 pnpm add @dot/env --workspace-root
 
 error message:
-
+chain:dev: Error: Substituted environment variable PROTOKIT_ENV_FOLDER not found
 
 ### Running tests
 ```zsh
