@@ -193,3 +193,14 @@ Once you are ready to interact with your app-chain, the first step is to start t
  * pnpm dev --filter chain
 
 The command above will start a local sequencer, which will be available at http://localhost:8080/graphql.
+
+* need to upgrade
+```zsh
+# starts both UI and sequencer locally
+pnpm env:inmemory dev
+
+# starts UI only
+pnpm env:inmemory dev --filter web
+# starts sequencer only
+pnpm env:inmemory dev --filter chain
+```
