@@ -98,6 +98,8 @@ location:
     "dev:run": "node --loader ts-node/esm --experimental-vm-modules --experimental-wasm-modules --experimental-wasm-threads --es-module-specifier-resolution=node ./src/start.ts start \"./environments/$PROTOKIT_ENV_FOLDER/chain.config.ts\" $1",
 
 why ?
+need to update the command:
+pnpm env:inmemory dev --filter chain
 
 ### Running tests
 ```zsh
