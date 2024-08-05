@@ -1,3 +1,41 @@
+# official website
+https://protokit.dev/docs/quickstart
+
+# Info
+https://github.com/proto-kit/starter-kit
+
+# my github
+https://github.com/MartinYeung5/20240709_protokit
+
+# git remote remove origin
+
+# bug fixed
+20240709
+* update turbo.json:
+change pipeline to tasks
+
+{
+  "$schema": "https://turbo.build/schema.json",
+  "globalDependencies": ["**/.env.*local"],
+  "tasks": {
+    "build": {
+      "dependsOn": ["^build"],
+      "outputs": [".next/**", "!.next/cache/**", "dist"]
+    },
+    "lint": {},
+    "dev": {
+      "cache": false,
+      "persistent": true
+    },
+    "test": {},
+    "start": {
+      "cache": false
+    }
+  }
+}
+
+
+
 # Protokit starter-kit
 
 This repository is a monorepo aimed at kickstarting application chain development using the Protokit framework.
@@ -11,15 +49,17 @@ The monorepo contains 1 package and 1 app:
 
 **Prerequisites:**
 
-- Node.js `v18`
+- Node.js v18
 - pnpm
 - nvm
 
-For running with persistance / deploying on a server
-- docker `>= 24.0`
-- docker-compose `>= 2.22.0`
+> If you're on windows, please use Docker until we find a more suitable solution to running the `@proto-kit/cli`. 
+> Run the following command and then proceed to "Running the sequencer & UI":
+>
+> `docker run -it --rm -p 3000:3000 -p 8080:8080 -v %cd%:/starter-kit -w /starter-kit gplane/pnpm:node18 bash`
 
-## Setup
+
+### Setup
 
 ```zsh
 git clone https://github.com/proto-kit/starter-kit my-chain
@@ -30,40 +70,19 @@ nvm use
 pnpm install
 ```
 
-## Running
-
-### Environments
-
-The starter-kit offers different environments to run you appchain.
-You can use those environments to configure the mode of operation for your appchain depending on which stage of development you are in.
-
-The starter kit comes with a set of pre-configured environments:
-- `inmemory`: Runs everything in-memory without persisting the data. Useful for early stages of runtime development.
-- `development`: Runs the sequencer locally and persists all state in databases running in docker. 
-- `sovereign`: Runs your appchain fully in docker (except the UI) for testnet deployments without settlement.
-
-Every command you execute should follow this pattern:
-
-`pnpm env:<environment> <command>`
-
-This makes sure that everything is set correctly and our tooling knows which environment you want to use.
-
-### Running in-memory
+### Running the sequencer & UI
 
 ```zsh
 # starts both UI and sequencer locally
-pnpm env:inmemory dev
+pnpm dev
 
+## 同時start (重點)
 # starts UI only
-pnpm env:inmemory dev --filter web
+pnpm dev --filter web
 # starts sequencer only
-pnpm env:inmemory dev --filter chain
+pnpm dev --filter chain
+
 ```
-
-> Be aware, the dev command will automatically restart your application when your sources change. 
-> If you don't want that, you can alternatively use `pnpm run build` and `pnpm run start`
-
-Navigate to `localhost:3000` to see the example UI, or to `localhost:8080/graphql` to see the GQL interface of the locally running sequencer.
 
 ### Running tests
 ```zsh
@@ -71,67 +90,89 @@ Navigate to `localhost:3000` to see the example UI, or to `localhost:8080/graphq
 pnpm run test --filter=chain -- --watchAll
 ```
 
-### Running with persistence
+Navigate to `localhost:3000` to see the example UI, or to `localhost:8080/graphql` to see the GQL interface of the locally running sequencer.
 
-```zsh
-# start databases
-pnpm env:development docker:up -d
-# migrate schema to database
-pnpm env:development migrate
+## 20240719
+https://protokit.dev/docs/quickstart/configuration
+* Your app-chain can be configured at three different levels: runtime, chain and client.
 
-# build & start sequencer
-pnpm build --filter=chain
-pnpm env:development start --filter=chain
+## 20240805
+### App-chain's runtime
+https://protokit.dev/docs/quickstart/app-chain
 
-# Watch sequencer for local filesystem changes
-# Be aware: Flags like --prune won't work with 'dev'
-pnpm env:development dev --filter=chain
+packages/chain/src/balances.ts
+*  test your runtime modules 
+packages/chain/test/balances.test.ts
 
-# Start the UI
-pnpm env:development dev --filter web
-```
+Then can run :
+* pnpm run test --filter=chain
+can run the test case !
+注意 pnpm run test --filter=chain --watchAll 會出error
+error msg: unexpected argument '--watchAll' found
 
-### Deploying to a server
+### Configuration
+https://protokit.dev/docs/quickstart/configuration
 
-When deploying to a server, you should push your code along with your forked starter-kit to some repository, 
-then clone it on your remote server and execute it.
+Your app-chain can be configured at three different levels: 
+* "runtime", 
+* "chain" and 
+* "client".
+Firstly we start with the overall runtime configuration, specifying the definition/configuration of your runtime module layout:
 
-```zsh
-# start every component with docker
-pnpm env:sovereign docker:up -d
-```
+#### runtime
+* packages/chain/src/runtime.ts
 
-#### Configuration
+#### chain & client
+Server & client configuration
 
-Go to `docker/proxy/Caddyfile` and replace the `*` matcher with your domain.
-```
-yourdomain.com {
-    ...
-}
-```
+* packages/chain/src/chain.config.ts
+* packages/chain/src/client.config.ts
 
-In most cases, you will need to change the `NEXT_PUBLIC_PROTOKIT_GRAPHQL_URL` property in the `.env` file to the domain your graphql endpoint is running in.
-By default, the graphql endpoint is running on the same domain as your UI with the `/graphql` suffix.
+The runtime configuration above is then used to define app-chain configurations for both client and server side app-chains. Keep in mind that configuration for the rest of the app-chain, namely the protocol and the sequencer is provided implicitly behind the scenes.
 
-#### Running sovereign chain locally
+chain.config.ts is used by Protokit's CLI to start a server-side app-chain, while client.config.ts is used by the Protokit SDK to connect to the server-side app-chain via e.g. GraphQL.
 
-The caddy reverse-proxy automatically uses https for all connections, use this guide to remove certificate errors when accessing localhost sites
 
-<https://caddyserver.com/docs/running#local-https-with-docker>
+#### Implementing runtime modules
+https://protokit.dev/docs/quickstart/first-runtime-module
 
-## CLI Options
+Its safe to assume that you'll want to implement your "own runtime module", and add it to the application chain. Doing so is very easy, and can be done in a few simple steps. We'll walk through the process of creating a simple runtime module called GuestBook.
 
-- `logLevel`: Overrides the loglevel used. Also configurable via the `PROTOKIT_LOG_LEVEL` environment variable.
-- `pruneOnStartup`: If set, prunes the database before startup, so that your chain is starting from a clean, genesis state. Alias for environment variable `PROTOKIT_PRUNE_ON_STARTUP`
+* Designing a runtime module: 
+To design a runtime module, you'll need to consider the following:
+What will be configurable in the module?
+What data will the module store?
+What methods will the module expose?
 
-In order to pass in those CLI option, add it at the end of your command like this
+##### Storage
+* create simple module "GuestBook" !
+For our GuestBook module, we'll want to allow users to check-in in the guest book. We'll start by defining the data model, namely the CheckIn struct, which will determine what constitutes a check-in.
+step 1:
+* packages/chain/src/guest-book/check-in.ts
 
-`pnpm env:inmemory dev --filter chain -- --logLevel DEBUG --pruneOnStartup`
+what is dist folder?
 
-### Building the framework from source
+step 2:
+* Define the runtime module:
+Second step is to create our runtime module and define the checkIns storage property, which will map a guest to the check-in they made.
+* packages/chain/src/guest-book/index.ts
 
-1. Make sure the framework is located under ../framework from the starter-kit's location
-2. Adapt your starter-kit's package.json to use the file:// references to framework
-3. Go into the framework folder, and build a docker image containing the sources with `docker build -f ./packages/deployment/docker/development-base/Dockerfile -t protokit-base .`
+##### Methods
+Now that we have our storage defined, we can start implementing the methods that will allow users to interact with the module. We'll define the checkIn_ method, which will allow users to check-in in the guest book.
 
-4. Comment out the first line of docker/base/Dockerfile to use protokit-base
+update (add "runtimeMethod")
+* packages/chain/src/guest-book/index.ts
+
+##### Extending the app-chain configuration
+In order to make use of the GuestBook runtime module, we have to add it to the app-chain's runtime configuration.
+
+* update 
+packages/chain/src/runtime.ts
+
+* results:  implemented a custom runtime module (done)
+
+#### Client interaction
+Once you are ready to interact with your app-chain, the first step is to start the sequencer. You may do so by using the Protokit CLI, which is available as part of the starter-kit under the following command:
+ * pnpm dev --filter chain
+
+The command above will start a local sequencer, which will be available at http://localhost:8080/graphql.
