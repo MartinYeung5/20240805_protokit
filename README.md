@@ -84,6 +84,8 @@ pnpm dev --filter chain
 
 ```
 
+pnpm add @dot/env --workspace-root
+
 ### Running tests
 ```zsh
 # run and watch tests for the `chain` package
