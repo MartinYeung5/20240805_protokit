@@ -89,6 +89,10 @@ pnpm add @dot/env --workspace-root
 error message:
 chain:dev: Error: Substituted environment variable PROTOKIT_ENV_FOLDER not found
 
+location:
+* in packages/chain/package.json
+    "dev:run": "node --loader ts-node/esm --experimental-vm-modules --experimental-wasm-modules --experimental-wasm-threads --es-module-specifier-resolution=node ./src/start.ts start \"./environments/$PROTOKIT_ENV_FOLDER/chain.config.ts\" $1",
+
 ### Running tests
 ```zsh
 # run and watch tests for the `chain` package
