@@ -213,3 +213,7 @@ pnpm run test --filter=chain -- --watchAll
 ```
 
 ## 20240806
+when run command:
+pnpm env:inmemory dev --filter web
+Error message:
+Module not found: Can't resolve 'chain'
