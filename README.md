@@ -211,3 +211,5 @@ pnpm env:inmemory dev --filter chain
 # run and watch tests for the `chain` package
 pnpm run test --filter=chain -- --watchAll
 ```
+
+## 20240806
