@@ -213,7 +213,8 @@ pnpm run test --filter=chain -- --watchAll
 ```
 
 ## 20240806
-* pnpm install
+1. pnpm install
+2. pnpm run build
 
 when run command:
 pnpm env:inmemory dev --filter web
@@ -224,7 +225,7 @@ dont' use this command and change to use "pnpm env:inmemory dev"
 
 ## 20240807
 when run command:
-pnpm env:inmemory dev
+3. pnpm env:inmemory dev
 results:
 successful 
 
