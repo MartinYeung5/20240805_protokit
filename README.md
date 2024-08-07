@@ -1,4 +1,4 @@
-# official website
+# official website, old version (20240805), need to delete
 https://protokit.dev/docs/quickstart
 
 # Info
@@ -6,8 +6,6 @@ https://github.com/proto-kit/starter-kit
 
 # my github
 https://github.com/MartinYeung5/20240709_protokit
-
-# old version (20240805)
 
 # git remote remove origin
 
