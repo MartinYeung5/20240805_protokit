@@ -231,3 +231,5 @@ successful
 
 ### App-chain's runtime
 packages\chain\src\runtime\modules\balances.ts
+
+### Configuration
