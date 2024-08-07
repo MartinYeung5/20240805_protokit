@@ -240,3 +240,4 @@ packages\chain\src\environments\client.config.ts
 ### Implementing runtime modules
 https://protokit.dev/docs/quickstart/first-runtime-module
 
+* Storage
