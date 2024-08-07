@@ -217,6 +217,8 @@ when run command:
 pnpm env:inmemory dev --filter web
 Error message:
 Module not found: Can't resolve 'chain'
+solution:
+dont' use this command and change to use "pnpm env:inmemory dev"
 
 ## 20240807
 when run command:
