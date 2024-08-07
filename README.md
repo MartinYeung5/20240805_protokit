@@ -231,6 +231,7 @@ successful
 
 ### App-chain's runtime
 packages\chain\src\runtime\modules\balances.ts
+*  a single runtime module called Balances.
 
 ### Configuration
 packages\chain\src\runtime\index.ts
