@@ -1,4 +1,4 @@
-# official website, old version (20240805), need to delete
+# official website
 https://protokit.dev/docs/quickstart
 
 # Info
@@ -213,6 +213,8 @@ pnpm run test --filter=chain -- --watchAll
 ```
 
 ## 20240806
+* pnpm install
+
 when run command:
 pnpm env:inmemory dev --filter web
 Error message:
@@ -225,3 +227,6 @@ when run command:
 pnpm env:inmemory dev
 results:
 successful 
+
+### App-chain's runtime
+packages\chain\src\runtime\modules\balances.ts
