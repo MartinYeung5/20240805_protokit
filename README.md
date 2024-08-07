@@ -234,7 +234,7 @@ packages\chain\src\runtime\modules\balances.ts
 *  a single runtime module called Balances.
 
 ### Configuration
-packages\chain\src\runtime\index.ts
+packages\chain\src\runtime\index.ts = packages/chain/src/runtime.ts
 
 packages\chain\src\environments\client.config.ts
 
