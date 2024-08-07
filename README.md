@@ -230,7 +230,7 @@ results:
 successful 
 
 ### App-chain's runtime
-packages\chain\src\runtime\modules\balances.ts
+packages\chain\src\runtime\modules\balances.ts = packages/chain/src/balances.ts
 *  a single runtime module called Balances.
 
 ### Configuration
