@@ -233,3 +233,4 @@ successful
 packages\chain\src\runtime\modules\balances.ts
 
 ### Configuration
+packages\chain\src\runtime\index.ts
