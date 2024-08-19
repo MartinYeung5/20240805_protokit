@@ -3,6 +3,7 @@ import { UInt64 } from "@proto-kit/library";
 import { client as appChain } from "../../src/index";
 import { PrivateKey } from "o1js";
 import { GuestBook } from "../../src/runtime/modules/guest-book";
+import { sleep } from "@proto-kit/common";
  
 const signer = PrivateKey.random();
 const sender = signer.toPublicKey();
