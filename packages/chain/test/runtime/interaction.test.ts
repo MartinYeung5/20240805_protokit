@@ -2,7 +2,7 @@ import { InMemorySigner } from "@proto-kit/sdk";
 import { UInt64 } from "@proto-kit/library";
 import { client as appChain } from "./../src/client.config";
 import { PrivateKey } from "o1js";
-import { GuestBook } from "../src/guest-book";
+import { GuestBook } from "../src/runtime/modules/guest-book";
  
 const signer = PrivateKey.random();
 const sender = signer.toPublicKey();
