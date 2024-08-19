@@ -248,5 +248,5 @@ For our "GuestBook" module, we'll want to allow users to check-in in the guest b
 
 addBalance() only need to set 1 time at packages\chain\src\runtime\modules\balances.ts
 add new file
-* guestbook.ts
+* index.ts
 * check-in.ts
