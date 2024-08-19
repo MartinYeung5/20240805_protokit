@@ -244,7 +244,7 @@ https://protokit.dev/docs/quickstart/first-runtime-module
 packages\chain\src\runtime\modules\guest-book\client.config.ts = packages/chain/src/guest-book/check-in.ts
 
 * Storage
-For our GuestBook module, we'll want to allow users to check-in in the guest book. We'll start by defining the data model, namely the CheckIn struct, which will determine what constitutes a check-in.
+For our "GuestBook" module, we'll want to allow users to check-in in the guest book. We'll start by defining the data model, namely the CheckIn struct, which will determine what constitutes a check-in.
 
 addBalance() only need to set 1 time at packages\chain\src\runtime\modules\balances.ts
 add new file
