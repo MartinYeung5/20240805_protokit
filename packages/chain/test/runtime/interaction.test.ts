@@ -33,5 +33,10 @@ describe("interaction", () => {
  
     await tx.sign();
     await tx.send();
+
+    await sleep(8000);
+ 
+    const checkIn = await appChain.query.runtime.GuestBook.checkIns.get(sender);
+    Provable.log("checkIn", sender, checkIn);
   });
 });
