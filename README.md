@@ -272,8 +272,8 @@ Argument of type 'UInt64' is not assignable to parameter of type 'string | numbe
 
 solution:
 in gueat-book/index.ts
-//const createdAt = UInt64.from(this.network.block.height);
-const createdAt = new UInt64(this.network.block.height);
+//public checkIn(rating: UInt64) 
+public async checkIn(rating: UInt64) 
 
 
   ## 20240820
