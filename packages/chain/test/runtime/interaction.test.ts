@@ -1,6 +1,6 @@
 import { InMemorySigner } from "@proto-kit/sdk";
 import { UInt64 } from "@proto-kit/library";
-import { client as appChain } from "./../src/client.config";
+import { client as appChain } from "../../src/index";
 import { PrivateKey } from "o1js";
 import { GuestBook } from "../../src/runtime/modules/guest-book";
  
