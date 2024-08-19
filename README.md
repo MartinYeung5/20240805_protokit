@@ -250,3 +250,13 @@ addBalance() only need to set 1 time at packages\chain\src\runtime\modules\balan
 add new file
 * index.ts
 * check-in.ts
+
+Error:
+Unable to resolve signature of method decorator when called as an expression.
+  Argument of type 'TypedPropertyDescriptor<(rating: UInt64) => void>' is not assignable to parameter of type 'TypedPropertyDescriptor<(...args: any[]) => Promise<any>>'.
+    Types of property 'value' are incompatible.
+      Type '((rating: UInt64) => void) | undefined' is not assignable to type '((...args: any[]) => Promise<any>) | undefined'.
+        Type '(rating: UInt64) => void' is not assignable to type '(...args: any[]) => Promise<any>'.ts(1241)
+(alias) runtimeMethod(): (target: RuntimeModule<unknown>, methodName: string, descriptor: TypedPropertyDescriptor<(...args: any[]) => Promise<any>>) => void
+import runtimeMethod
+No quick fixes available
