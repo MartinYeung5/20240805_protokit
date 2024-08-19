@@ -279,3 +279,4 @@ public async checkIn(rating: UInt64)
   ## 20240820
   https://protokit.dev/docs/quickstart/client-interaction
   ### Client interaction
+  test/runtime/interaction.test.ts
