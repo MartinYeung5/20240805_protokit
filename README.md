@@ -286,3 +286,11 @@ Argument of type '() => void' is not assignable to parameter of type '() => Prom
   Type 'void' is not assignable to type 'Promise<void>'.ts(2345)
 
 solution:
+const tx = await appChain.transaction(sender, () => {
+      guestBook.checkIn(rating);
+    });
+
+change to 
+onst tx = await appChain.transaction(sender, () => {
+      return guestBook.checkIn(rating);
+    });
