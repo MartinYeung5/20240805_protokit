@@ -294,3 +294,6 @@ change to
 onst tx = await appChain.transaction(sender, () => {
       return guestBook.checkIn(rating);
     });
+
+test:
+pnpm test --filter=chain ./test/interaction.test.ts
