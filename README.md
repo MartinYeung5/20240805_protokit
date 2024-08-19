@@ -280,3 +280,9 @@ public async checkIn(rating: UInt64)
 https://protokit.dev/docs/quickstart/client-interaction
 ### Client interaction
 test/runtime/interaction.test.ts
+
+Error:
+Argument of type '() => void' is not assignable to parameter of type '() => Promise<void>'.
+  Type 'void' is not assignable to type 'Promise<void>'.ts(2345)
+
+solution:
