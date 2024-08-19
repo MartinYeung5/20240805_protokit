@@ -264,3 +264,6 @@ No quick fixes available
 Error:
 Argument of type 'UInt64' is not assignable to parameter of type 'string | number | bigint | UInt64'.
   Type 'UInt64' is missing the following properties from type 'UInt64': constructorReference, numBits, fromField, from, and 4 more.ts(2345)
+
+  ## 20240820
+  ### Client interaction
