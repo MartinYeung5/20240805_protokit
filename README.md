@@ -296,4 +296,6 @@ onst tx = await appChain.transaction(sender, () => {
     });
 
 test:
-pnpm test --filter=chain ./test/interaction.test.ts
+pnpm test --filter=chain ./test/runtime/interaction.test.ts
+results:
+failed
